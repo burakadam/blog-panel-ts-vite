@@ -4,7 +4,7 @@ const onFinish = (values: unknown) => {
   console.log('Success:', values);
 };
 
-type FieldType = {
+type TFieldType = {
   username?: string;
   password?: string;
   remember?: string;
@@ -21,35 +21,36 @@ const Login = () => {
       onFinish={onFinish}
       autoComplete='off'
     >
-      <Form.Item<FieldType>
+      <Form.Item<TFieldType>
         label='Username'
         name='username'
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[
+          { required: true, message: 'Please input your username!' },
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+        ]}
       >
         <Input />
       </Form.Item>
-
-      <Form.Item<FieldType>
+      <Form.Item<TFieldType>
         label='Password'
         name='password'
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
         <Input.Password />
       </Form.Item>
-
-      <Form.Item<FieldType>
+      <Form.Item<TFieldType>
         name='remember'
         valuePropName='checked'
         wrapperCol={{ offset: 8, span: 16 }}
       >
         <Checkbox>Remember me</Checkbox>
       </Form.Item>
-
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type='default' htmlType='submit'>
-          Submit
-        </Button>
-      </Form.Item>
+      <Button type='default' htmlType='submit' block>
+        Submit
+      </Button>
     </Form>
   );
 };
