@@ -25,7 +25,20 @@ const initialState: IAuthInitialState = {
 const authSlice = createSlice({
   name: REDUCERS.AUTH,
   initialState,
-  reducers: {},
+  reducers: {
+    loginRequest(state) {
+      state.loadings.login = true;
+      state.errors.login = initialState.errors.login;
+    },
+    loginSuccess(state, action) {
+      state.token = action.payload.token;
+      state.loadings.login = initialState.loadings.login;
+      state.errors.login = initialState.errors.login;
+    },
+    loginError(_, action) {
+      return { ...initialState, token: null, error: action.payload.error };
+    },
+  },
 });
 
 const authActions = authSlice.actions;
