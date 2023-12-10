@@ -1,26 +1,33 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { LOCAL_STORAGE } from '@/constants/localStorage';
 import { authActions } from './slice';
 
-import { authService } from '@/services/auth';
-import { ILogin } from '@/services/auth/api';
+import { LOCAL_STORAGE } from '@/constants/localStorage';
+import { ILogin, login } from '@/services/auth/api';
+import { PayloadAction } from '@reduxjs/toolkit';
 
-function* login({ payload }: { payload: ILogin }) {
+function* handleLogin({ payload }: PayloadAction<ILogin>) {
+  console.log('handleLogin');
   try {
-    const loginRes = yield call(authService.login, {
-      username: payload.email,
+    console.log('%%%%payload', payload);
+    const loginRes: { success: boolean; token: string } = yield call(login, {
+      email: payload.email,
       password: payload.password,
     });
-    const token = loginRes.data.token;
 
-    yield put(authActions.loginSuccess({ token }));
-    localStorage.setItem(LOCAL_STORAGE.USER_TOKEN, token);
+    if (loginRes.success) {
+      const { token } = loginRes;
+      console.log(token);
+      yield put(authActions.loginSuccess({ token }));
+      localStorage.setItem(LOCAL_STORAGE.USER_TOKEN, token);
+    } else {
+      throw new Error('Login failed');
+    }
   } catch (error: unknown) {
     yield put(authActions.loginError(error));
   }
 }
 
 export default function* authWatcher() {
-  yield takeLatest(authActions.loginRequest, login);
+  yield takeLatest(`${authActions.loginRequest}`, handleLogin);
 }

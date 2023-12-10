@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { LOCAL_STORAGE } from '@/constants/localStorage';
 import { REDUCERS } from '@/constants/reducers';
 
 interface IAuthInitialState {
@@ -10,7 +11,7 @@ interface IAuthInitialState {
 }
 
 const initialState: IAuthInitialState = {
-  token: null,
+  token: localStorage.getItem(LOCAL_STORAGE.USER_TOKEN),
   userEmail: null,
   loadings: {
     login: false,
@@ -26,7 +27,8 @@ const authSlice = createSlice({
   name: REDUCERS.AUTH,
   initialState,
   reducers: {
-    loginRequest(state) {
+    loginRequest(state: IAuthInitialState) {
+      console.log('loginRequest');
       state.loadings.login = true;
       state.errors.login = initialState.errors.login;
     },

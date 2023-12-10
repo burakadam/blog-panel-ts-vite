@@ -3,10 +3,18 @@ export interface ILogin {
   password: string;
 }
 
-const login = async (params: ILogin): Promise<boolean> => {
+interface LoginResponse {
+  success: boolean;
+  token: string;
+}
+
+const login = async (params: ILogin): Promise<LoginResponse> => {
   console.log('login params', params);
   return new Promise((resolve) => {
-    resolve(true);
+    resolve({
+      success: true,
+      token: '123',
+    });
   });
 };
 
