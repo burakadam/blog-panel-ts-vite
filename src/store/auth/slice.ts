@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { LOCAL_STORAGE } from '@/constants/localStorage';
 import { REDUCERS } from '@/constants/reducers';
+import { ILogin } from '@/services/auth/api';
 
 interface IAuthInitialState {
   token: string | null;
@@ -27,12 +28,12 @@ const authSlice = createSlice({
   name: REDUCERS.AUTH,
   initialState,
   reducers: {
-    loginRequest(state: IAuthInitialState) {
-      console.log('loginRequest');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    loginRequest(state, _action: PayloadAction<ILogin>) {
       state.loadings.login = true;
       state.errors.login = initialState.errors.login;
     },
-    loginSuccess(state, action) {
+    loginSuccess(state, action: PayloadAction<{ token: string }>) {
       state.token = action.payload.token;
       state.loadings.login = initialState.loadings.login;
       state.errors.login = initialState.errors.login;

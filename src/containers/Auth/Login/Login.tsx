@@ -1,3 +1,4 @@
+import { ILogin } from '@/services/auth/api';
 import { authActions } from '@/store/auth';
 import { useAppDispatch } from '@/store/hooks';
 import { Button, Form, Input } from 'antd';
@@ -10,7 +11,9 @@ type TFieldType = {
 const Login = () => {
   const dispatch = useAppDispatch();
 
-  const onFinish = (values: TFieldType) => {
+  console.log(import.meta.env.VITE_SERVICE_URL);
+
+  const onFinish = (values: ILogin) => {
     console.log('Success:', values);
     dispatch(authActions.loginRequest(values));
   };
@@ -22,8 +25,8 @@ const Login = () => {
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{
-        email: 'burak@rok.com',
-        password: 'asdas',
+        email: 'burak.erden@gmail.com',
+        password: 'gofret88',
       }}
       onFinish={onFinish}
       autoComplete='off'

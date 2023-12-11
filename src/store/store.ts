@@ -1,10 +1,6 @@
 import { REDUCERS } from '@/constants/reducers';
 import createSagaMiddleware from '@redux-saga/core';
-import {
-  combineReducers,
-  configureStore,
-  PreloadedState,
-} from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth';
 import rootSaga from './root-saga';
 
@@ -16,17 +12,12 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: [sagaMiddleware],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(rootSaga);
 
-export function setupStore(preloadedState?: PreloadedState<RootState>) {
-  return configureStore({
-    reducer: rootReducer,
-    preloadedState,
-  });
-}
-export type RootState = ReturnType<typeof rootReducer>;
-export type AppStore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppStore['dispatch'];
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;

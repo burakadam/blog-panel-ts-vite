@@ -1,21 +1,17 @@
+import axiosInstance from '../axios';
+import API_ROUTES from './routes';
+
 export interface ILogin {
   email: string;
   password: string;
 }
 
-interface LoginResponse {
-  success: boolean;
-  token: string;
-}
-
-const login = async (params: ILogin): Promise<LoginResponse> => {
+const login = async (params: ILogin): Promise<unknown> => {
   console.log('login params', params);
-  return new Promise((resolve) => {
-    resolve({
-      success: true,
-      token: '123',
-    });
-  });
+
+  const loginResponse = await axiosInstance.post(API_ROUTES.login, params);
+
+  return loginResponse;
 };
 
 export { login };
