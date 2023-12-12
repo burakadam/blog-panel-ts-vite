@@ -41,6 +41,9 @@ const authSlice = createSlice({
     loginError(_, action) {
       return { ...initialState, token: null, error: action.payload.error };
     },
+    logout() {
+      return { ...initialState };
+    },
   },
 });
 

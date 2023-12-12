@@ -25,7 +25,7 @@ const Login = () => {
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{
-        email: 'burak.erden@gmail.com',
+        email: 'burak.erdena@gmail.com',
         password: 'gofret88',
       }}
       onFinish={onFinish}

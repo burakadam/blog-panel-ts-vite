@@ -1,3 +1,6 @@
+import { errorHandler } from '@/utils/errorHandler';
+import { requestHandler } from '@/utils/requestHandler';
+import { responseHandler } from '@/utils/responseHandler';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
@@ -5,45 +8,8 @@ const axiosInstance = axios.create({
   timeout: 30000,
 });
 
-axiosInstance.interceptors.response.use(
-  function (response) {
-    const res = response.data;
+axiosInstance.interceptors.response.use(responseHandler, errorHandler);
 
-    if (!res.success) {
-      console.log(res.error.code);
-
-      return Promise.reject(res.error);
-    }
-
-    return response;
-  },
-  function (respErrObj) {
-    const errCode = respErrObj.response.data.error.code;
-
-    // UNSUCCESSFULL_AUTHORIZATION
-    if (errCode === 1002) {
-      //   store.dispatch(authActions.logout());
-      console.log('auth');
-    } else {
-      console.log('error-code', errCode);
-    }
-  }
-);
-
-axiosInstance.interceptors.request.use(function (request) {
-  //   const authState = store.getState().auth;
-  //   const zoneId = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-  //   request.data = removeEmptyParams(request.data);
-
-  //   if (authState.token)
-  //     request.headers.Authorization = `Bearer ${authState.token}`;
-  //   request.headers['X-Request-Id'] = uuidv4();
-  //   request.headers['X-Zone-Id'] = zoneId;
-  //   request.headers['X-Device-Id'] =
-  //     navigator?.userAgentData?.platform || navigator?.platform || '';
-
-  return request;
-});
+axiosInstance.interceptors.request.use(requestHandler);
 
 export default axiosInstance;

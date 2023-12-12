@@ -7,9 +7,7 @@ import { ILogin, login } from '@/services/auth/api';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 function* handleLogin({ payload }: PayloadAction<ILogin>) {
-  console.log('handleLogin');
   try {
-    console.log('%%%%payload', payload);
     const loginRes: { success: boolean; token: string } = yield call(login, {
       email: payload.email,
       password: payload.password,
@@ -28,6 +26,15 @@ function* handleLogin({ payload }: PayloadAction<ILogin>) {
   }
 }
 
+const removeTokenFromStorage = () => {
+  localStorage.removeItem('userToken');
+};
+
+function* handleLogout() {
+  yield call(removeTokenFromStorage);
+}
+
 export default function* authWatcher() {
-  yield takeLatest(`${authActions.loginRequest}`, handleLogin);
+  yield takeLatest(authActions.loginRequest, handleLogin);
+  yield takeLatest(authActions.logout, handleLogout);
 }
