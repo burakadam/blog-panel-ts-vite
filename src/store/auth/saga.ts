@@ -29,7 +29,7 @@ function* handleLogin({ payload }: PayloadAction<ILogin>) {
 }
 
 const removeTokenFromStorage = () => {
-  localStorage.removeItem('userToken');
+  localStorage.removeItem('token');
 };
 
 function* handleLogout() {

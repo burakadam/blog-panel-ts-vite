@@ -36,7 +36,7 @@ const authSlice = createSlice({
       return { ...initialState, token: null, error: action.payload.error };
     },
     logout() {
-      return { ...initialState };
+      return { ...initialState, token: null };
     },
   },
 });
