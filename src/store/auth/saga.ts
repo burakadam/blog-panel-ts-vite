@@ -14,8 +14,8 @@ function* handleLogin({ payload }: PayloadAction<ILogin>) {
       password: payload.password,
     });
 
-    const token = loginRes.data?.payload?.user?.token;
     const success = loginRes.data?.success;
+    const token = loginRes.data?.payload?.user?.token;
 
     if (success && token) {
       yield put(authActions.loginSuccess({ token }));
@@ -24,7 +24,6 @@ function* handleLogin({ payload }: PayloadAction<ILogin>) {
       throw new Error('Login failed');
     }
   } catch (error: unknown) {
-    console.log('error', error);
     yield put(authActions.loginError(error));
   }
 }

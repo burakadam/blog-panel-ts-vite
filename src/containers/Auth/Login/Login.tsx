@@ -1,6 +1,6 @@
 import { ILogin } from '@/services/auth/api';
-import { authActions } from '@/store/auth';
-import { useAppDispatch } from '@/store/hooks';
+import { authActions, authSelectors } from '@/store/auth';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Button, Form, Input } from 'antd';
 
 type TFieldType = {
@@ -10,8 +10,7 @@ type TFieldType = {
 
 const Login = () => {
   const dispatch = useAppDispatch();
-
-  console.log(import.meta.env.VITE_SERVICE_URL);
+  const loading = useAppSelector(authSelectors.loading);
 
   const onFinish = (values: ILogin) => {
     dispatch(authActions.loginRequest(values));
@@ -50,7 +49,7 @@ const Login = () => {
       >
         <Input.Password />
       </Form.Item>
-      <Button type='default' htmlType='submit' block>
+      <Button type='default' htmlType='submit' block loading={loading}>
         Submit
       </Button>
     </Form>
