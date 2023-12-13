@@ -1,6 +1,6 @@
-import { errorHandler } from '@/utils/errorHandler';
-import { requestHandler } from '@/utils/requestHandler';
-import { responseHandler } from '@/utils/responseHandler';
+import { errorHandler } from '@/handlers/errorHandler';
+import { requestHandler } from '@/handlers/requestHandler';
+import { responseHandler } from '@/handlers/responseHandler';
 import axios from 'axios';
 
 const axiosInstance = axios.create({

@@ -5,8 +5,6 @@ const responseHandler = (response: AxiosResponse) => {
   const res = response.data;
 
   if (!res.success) {
-    console.log('%%%responseHandler%%', res.error.statusCode);
-
     notification.error({
       message: res.statusCode,
       description: res.errorMessage,

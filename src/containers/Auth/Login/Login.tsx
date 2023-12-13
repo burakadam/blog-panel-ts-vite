@@ -14,7 +14,6 @@ const Login = () => {
   console.log(import.meta.env.VITE_SERVICE_URL);
 
   const onFinish = (values: ILogin) => {
-    console.log('Success:', values);
     dispatch(authActions.loginRequest(values));
   };
 
@@ -25,8 +24,8 @@ const Login = () => {
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{
-        email: 'burak.erdena@gmail.com',
-        password: 'gofret88',
+        email: '',
+        password: '',
       }}
       onFinish={onFinish}
       autoComplete='off'

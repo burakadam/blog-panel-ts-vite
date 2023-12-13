@@ -33,7 +33,7 @@ const authSlice = createSlice({
       state.loadings.login = true;
       state.errors.login = initialState.errors.login;
     },
-    loginSuccess(state, action: PayloadAction<{ token: string }>) {
+    loginSuccess(state, action) {
       state.token = action.payload.token;
       state.loadings.login = initialState.loadings.login;
       state.errors.login = initialState.errors.login;

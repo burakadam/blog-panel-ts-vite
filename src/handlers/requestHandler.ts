@@ -2,7 +2,7 @@ import { store } from '@/store/store';
 import { InternalAxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-import { getBrowserName } from './getBrowserName';
+import { getBrowserName } from '../utils/getBrowserName';
 
 const requestHandler = (request: InternalAxiosRequestConfig) => {
   const authState = store.getState().auth;

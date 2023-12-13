@@ -10,11 +10,7 @@ const errorHandler = (response: { response: { data: IBaseResponse } }) => {
     },
   } = response;
 
-  console.log('%%%respErrObj%%', response.response.data);
-
   if (statusCode === 401) store.dispatch(authActions.logout());
-
-  console.log('error-code', statusCode);
 
   notification.error({
     message: statusCode,

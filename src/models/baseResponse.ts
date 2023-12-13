@@ -1,6 +1,6 @@
-export interface IBaseResponse {
+export interface IBaseResponse<T> {
   message?: string | null;
-  payload?: object;
+  payload?: T | null;
   errorMessage: string | null;
   statusCode: number;
   success: boolean;

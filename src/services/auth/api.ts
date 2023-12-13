@@ -7,8 +7,6 @@ export interface ILogin {
 }
 
 const login = async (params: ILogin): Promise<unknown> => {
-  console.log('login params', params);
-
   const loginResponse = await axiosInstance.post(API_ROUTES.login, params);
 
   return loginResponse;
