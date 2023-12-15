@@ -1,7 +1,7 @@
 import { AuthLayout } from '@/components/Layouts/AuthLayout';
+import { ROUTES } from '@/constants/routes';
+import { Login } from '@/containers/Auth/Login';
 import { Navigate, useRoutes } from 'react-router-dom';
-import { ROUTES } from '../constants/routes';
-import { Login } from '../containers/Auth/Login';
 
 const AuthRoutes = () =>
   useRoutes([
