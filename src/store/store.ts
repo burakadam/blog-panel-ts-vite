@@ -1,4 +1,5 @@
 import { REDUCERS } from '@/constants/reducers';
+import { blogCreateReducer } from '@/containers/Blog/Create';
 import createSagaMiddleware from '@redux-saga/core';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth';
@@ -8,6 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   [REDUCERS.AUTH]: authReducer,
+  [REDUCERS.BLOGCREATE]: blogCreateReducer,
 });
 
 export const store = configureStore({
@@ -19,5 +21,4 @@ export const store = configureStore({
 sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;

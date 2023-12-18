@@ -4,14 +4,14 @@ import { LOCAL_STORAGE } from '@/constants/localStorage';
 import { REDUCERS } from '@/constants/reducers';
 import { ILogin } from '@/services/auth/api';
 
-interface IInitialState {
+export interface IAuthInitialState {
   token: string | null;
   userEmail: string | null;
   loading: boolean;
   error: string | null;
 }
 
-const initialState: IInitialState = {
+const initialState: IAuthInitialState = {
   token: localStorage.getItem(LOCAL_STORAGE.USER_TOKEN),
   userEmail: null,
   loading: false,

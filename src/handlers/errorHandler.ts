@@ -3,12 +3,16 @@ import { authActions } from '@/store/auth';
 import { store } from '@/store/store';
 import { notification } from 'antd';
 
-const errorHandler = (response: { response: { data: IBaseResponse } }) => {
+const errorHandler = (response: {
+  response: { data: IBaseResponse<unknown> };
+}) => {
   const {
     response: {
       data: { errorMessage, statusCode },
     },
   } = response;
+
+  console.log('response', response);
 
   if (statusCode === 401) store.dispatch(authActions.logout());
 

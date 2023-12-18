@@ -9,13 +9,13 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 function* handleLogin({ payload }: PayloadAction<ILogin>) {
   try {
-    const loginRes: { data: AuthModel.TResponse } = yield call(login, {
+    const loginResult: { data: AuthModel.TResponse } = yield call(login, {
       email: payload.email,
       password: payload.password,
     });
 
-    const success = loginRes.data?.success;
-    const token = loginRes.data?.payload?.user?.token;
+    const success = loginResult.data?.success;
+    const token = loginResult.data?.payload?.user?.token;
 
     if (success && token) {
       yield put(authActions.loginSuccess({ token }));

@@ -1,7 +1,9 @@
 import { TextEditor } from '@/components/TextEditor';
-import { useAppDispatch } from '@/store/hooks';
+import { ICategory } from '@/models/category';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Button, Form, Input, Select } from 'antd';
 import { useEffect } from 'react';
+import { blogCreateSelectors } from '.';
 import { blogCreateActions } from './slice';
 
 const { Option } = Select;
@@ -9,13 +11,14 @@ const { Option } = Select;
 const Create = () => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
+  const categoryList = useAppSelector(blogCreateSelectors.categoryList);
 
   const onFinish = async (values: unknown) => {
     console.log('values', values);
   };
 
   useEffect(() => {
-    dispatch(blogCreateActions.getCategories());
+    dispatch(blogCreateActions.getCategoriesRequest());
   }, []);
 
   return (
@@ -40,9 +43,11 @@ const Create = () => {
       </Form.Item>
       <Form.Item label='Category' name='category'>
         <Select>
-          <Option value='category1'>Category 1</Option>
-          <Option value='category2'>Category 2</Option>
-          {/* Add more options as needed */}
+          {categoryList.map((item: ICategory) => (
+            <Option value={item._id} key={item._id}>
+              {item.name}
+            </Option>
+          ))}
         </Select>
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
