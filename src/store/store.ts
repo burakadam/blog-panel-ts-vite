@@ -1,5 +1,6 @@
 import { REDUCERS } from '@/constants/reducers';
-import { blogCreateReducer } from '@/containers/Blog/Create';
+import { blogCreateReducer } from '@/containers/Blog/pages/Create';
+import { categoryListeReducer } from '@/containers/Category/pages/List';
 import createSagaMiddleware from '@redux-saga/core';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth';
@@ -10,6 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
   [REDUCERS.AUTH]: authReducer,
   [REDUCERS.BLOGCREATE]: blogCreateReducer,
+  [REDUCERS.CATEGORYLIST]: categoryListeReducer,
 });
 
 export const store = configureStore({

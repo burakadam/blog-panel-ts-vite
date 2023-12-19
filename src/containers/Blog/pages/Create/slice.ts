@@ -37,5 +37,4 @@ const blogCreateSlice = createSlice({
 const blogCreateActions = blogCreateSlice.actions;
 
 export { blogCreateActions };
-
 export default blogCreateSlice.reducer;

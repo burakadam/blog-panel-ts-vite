@@ -1,6 +1,9 @@
 import { ProtectedLayout } from '@/components/Layouts/ProtectedLayout';
 import { ROUTES } from '@/constants/routes';
-import { Create as BlogCreate } from '@/containers/Blog/Create';
+import { Create as BlogCreate } from '@/containers/Blog/pages/Create';
+import { Create as CategoryCreate } from '@/containers/Category/pages/Create';
+import { List as CategoryList } from '@/containers/Category/pages/List';
+
 import { Home } from '@/containers/Home';
 import { Navigate, useRoutes } from 'react-router-dom';
 
@@ -16,6 +19,14 @@ const ProtectedRoutes = () =>
         {
           path: ROUTES.BLOG_CREATE,
           element: <BlogCreate />,
+        },
+        {
+          path: ROUTES.CATEGORY_LIST,
+          element: <CategoryList />,
+        },
+        {
+          path: ROUTES.CATEGORY_CREATE,
+          element: <CategoryCreate />,
         },
       ],
     },
