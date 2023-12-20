@@ -6,4 +6,6 @@ export interface ICategory {
   description: string;
 }
 
+export type TCategoryValues = Pick<ICategory, 'description' | 'name'>;
+
 export type TResponse = IBaseResponse<ICategory>;

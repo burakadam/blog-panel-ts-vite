@@ -2,10 +2,11 @@ import { store } from '@/store/store';
 import { InternalAxiosRequestConfig } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
+import { IAuthInitialState } from '@/store/auth';
 import { getBrowserName } from '../utils/getBrowserName';
 
 const requestHandler = (request: InternalAxiosRequestConfig) => {
-  const authState = store.getState().auth;
+  const authState = store.getState().auth as IAuthInitialState;
   const zoneId = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   console.log('authState.token', authState.token);
