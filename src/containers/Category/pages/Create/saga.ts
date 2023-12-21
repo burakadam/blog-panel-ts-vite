@@ -1,15 +1,28 @@
-import { TCategoryValues } from '@/models/category';
+import * as CategoryModel from '@/models/category';
 
+import { createCategory as createCategoryItem } from '@/services/category/api';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { put, takeLatest } from 'redux-saga/effects';
+import { notification } from 'antd';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { categoryCreateActions } from './slice';
 
-function* createCategory({ payload }: PayloadAction<TCategoryValues>) {
+function* createCategory({
+  payload,
+}: PayloadAction<CategoryModel.TCategoryValues>) {
   try {
-    yield console.log('values', payload);
+    const createResult: { data: CategoryModel.TResponse } = yield call(
+      createCategoryItem,
+      payload
+    );
+
     yield put(categoryCreateActions.postCategorySuccess());
+
+    notification.success({
+      message: createResult.data.statusCode,
+      description: createResult.data.message,
+    });
   } catch (error) {
-    console.log('error', error);
+    yield put(categoryCreateActions.postCategoryError(error));
   }
 }
 

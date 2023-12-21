@@ -18,7 +18,6 @@ const Create = () => {
   };
 
   useEffect(() => {
-    console.log('isSuccess', isSuccess);
     if (isSuccess) navigate(ROUTES.CATEGORY_LIST);
     return () => {
       dispatch(categoryCreateActions.resetState());
