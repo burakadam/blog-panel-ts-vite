@@ -5,4 +5,5 @@ export const ROUTES = {
   BLOG_LIST: '/blog/list',
   CATEGORY_CREATE: '/category/create',
   CATEGORY_LIST: '/category/list',
+  CATEGORY_UPDATE: '/category/update',
 };

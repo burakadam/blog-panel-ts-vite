@@ -15,7 +15,7 @@ const initialState: ICategoryListInitialState = {
 };
 
 const categoryListSlice = createSlice({
-  name: REDUCERS.CATEGORYLIST,
+  name: REDUCERS.CATEGORY_LIST,
   initialState,
   reducers: {
     getCategoriesRequest(state) {

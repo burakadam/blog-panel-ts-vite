@@ -15,7 +15,7 @@ const initialState: ICreateBlogInitialState = {
 };
 
 const blogCreateSlice = createSlice({
-  name: REDUCERS.BLOGCREATE,
+  name: REDUCERS.BLOG_CREATE,
   initialState,
   reducers: {
     getCategoriesRequest(state) {

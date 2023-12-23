@@ -3,7 +3,7 @@ import { RootState } from '@/store/store';
 import { ICategoryCreateInitialState } from './slice';
 
 const selectCategoryCreate = (state: RootState): ICategoryCreateInitialState =>
-  state[REDUCERS.CATEGORYCREATE];
+  state[REDUCERS.CATEGORY_CREATE];
 
 const isLoading = (state: RootState) => selectCategoryCreate(state).loading;
 const isSuccess = (state: RootState) => selectCategoryCreate(state).success;

@@ -8,4 +8,8 @@ export interface ICategory {
 
 export type TCategoryValues = Pick<ICategory, 'description' | 'name'>;
 
+export type TCategoryId = {
+  id: string;
+};
+
 export type TResponse = IBaseResponse<ICategory>;

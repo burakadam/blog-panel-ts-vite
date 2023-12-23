@@ -22,6 +22,7 @@ const Create = () => {
     return () => {
       dispatch(categoryCreateActions.resetState());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess]);
 
   return (

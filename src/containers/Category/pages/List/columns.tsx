@@ -13,7 +13,7 @@ export const COLUMNS = [
   },
   {
     render: (item: ICategory) => (
-      <Link to={`${ROUTES.CATEGORY_LIST}/${item._id}`} key={item._id}>
+      <Link to={`${ROUTES.CATEGORY_UPDATE}/${item._id}`} key={item._id}>
         DETAIL
       </Link>
     ),

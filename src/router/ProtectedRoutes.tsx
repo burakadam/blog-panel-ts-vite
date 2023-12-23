@@ -3,6 +3,7 @@ import { ROUTES } from '@/constants/routes';
 import { Create as BlogCreate } from '@/containers/Blog/pages/Create';
 import { Create as CategoryCreate } from '@/containers/Category/pages/Create';
 import { List as CategoryList } from '@/containers/Category/pages/List';
+import { Update as CategoryUpdate } from '@/containers/Category/pages/Update';
 
 import { Home } from '@/containers/Home';
 import { Navigate, useRoutes } from 'react-router-dom';
@@ -27,6 +28,10 @@ const ProtectedRoutes = () =>
         {
           path: ROUTES.CATEGORY_CREATE,
           element: <CategoryCreate />,
+        },
+        {
+          path: `${ROUTES.CATEGORY_UPDATE}/:categoryId`,
+          element: <CategoryUpdate />,
         },
       ],
     },

@@ -15,7 +15,7 @@ const initialState: ICategoryCreateInitialState = {
 };
 
 const categoryCreateSlice = createSlice({
-  name: REDUCERS.CATEGORYCREATE,
+  name: REDUCERS.CATEGORY_CREATE,
   initialState,
   reducers: {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,4 +1,4 @@
-import { TCategoryValues } from '@/models/category';
+import { ICategory, TCategoryValues } from '@/models/category';
 import axiosInstance from '../axios';
 import API_ROUTES from './routes';
 
@@ -12,4 +12,14 @@ const createCategory = async (params: TCategoryValues) => {
   return categoryResponse;
 };
 
-export { createCategory, getCategoryList };
+const updateCategory = async (params: ICategory) => {
+  const categoryResponse = await axiosInstance.post(API_ROUTES.update, params);
+  return categoryResponse;
+};
+
+const getCategoryDetail = async (id: string) => {
+  const categoryResponse = await axiosInstance.post(API_ROUTES.detail, { id });
+  return categoryResponse;
+};
+
+export { createCategory, getCategoryDetail, getCategoryList, updateCategory };
