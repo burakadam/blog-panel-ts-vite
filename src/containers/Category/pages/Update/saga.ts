@@ -33,8 +33,10 @@ function* getCategoryDetail({
   try {
     const categoryResult: { data: CategoryModel.TResponse } = yield call(
       getCategoryDetailItem,
-      payload.id
+      payload._id
     );
+
+    console.log(categoryResult);
 
     yield put(
       categoryUpdateActions.getDetailSuccess({

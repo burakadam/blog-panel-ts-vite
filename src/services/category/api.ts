@@ -17,8 +17,8 @@ const updateCategory = async (params: ICategory) => {
   return categoryResponse;
 };
 
-const getCategoryDetail = async (id: string) => {
-  const categoryResponse = await axiosInstance.post(API_ROUTES.detail, { id });
+const getCategoryDetail = async (_id: string) => {
+  const categoryResponse = await axiosInstance.post(API_ROUTES.detail, { _id });
   return categoryResponse;
 };
 

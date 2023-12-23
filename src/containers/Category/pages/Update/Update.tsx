@@ -11,24 +11,32 @@ const Update = () => {
   const dispatch = useAppDispatch();
   const categoryDetail = useAppSelector(categoryUpdateSelectors.category);
   const isLoading = useAppSelector(categoryUpdateSelectors.isLoading);
-
-  console.log(categoryDetail);
+  const error = useAppSelector(categoryUpdateSelectors.error);
 
   useEffect(() => {
     dispatch(
-      categoryUpdateActions.getDetailRequest({ id: categoryId as string })
+      categoryUpdateActions.getDetailRequest({ _id: categoryId as string })
     );
   }, []);
 
   useEffect(() => {
+    console.log(categoryDetail);
     if (form.current) form.current?.setFieldsValue(categoryDetail);
   }, [categoryDetail]);
 
-  const onFinish = (values: TCategoryValues) => console.log(values);
+  const onFinish = (values: TCategoryValues) => {
+    if (categoryId)
+      dispatch(
+        categoryUpdateActions.postCategoryRequest({
+          _id: categoryId,
+          ...values,
+        })
+      );
+  };
 
   return (
     <Spin spinning={isLoading}>
-      <Form onFinish={onFinish} layout='vertical' ref={form}>
+      <Form onFinish={onFinish} layout='vertical' ref={form} disabled={!!error}>
         <Form.Item
           label='Name'
           name='name'
@@ -44,7 +52,7 @@ const Update = () => {
           <Input.TextArea />
         </Form.Item>
         <Form.Item>
-          <Button htmlType='submit'>Create Category</Button>
+          <Button htmlType='submit'>Update Category</Button>
         </Form.Item>
       </Form>
     </Spin>
