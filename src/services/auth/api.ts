@@ -12,4 +12,9 @@ const login = async (params: ILogin): Promise<unknown> => {
   return loginResponse;
 };
 
-export { login };
+const getUserData = async (): Promise<unknown> => {
+  const userDataResponse = await axiosInstance.get(API_ROUTES.me);
+  return userDataResponse;
+};
+
+export { getUserData, login };

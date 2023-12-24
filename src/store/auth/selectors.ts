@@ -6,9 +6,12 @@ const selectAuth = (state: RootState): IAuthInitialState =>
   state[REDUCERS.AUTH];
 
 const userToken = (state: RootState) => selectAuth(state).token;
-const loading = (state: RootState) => selectAuth(state).loading;
+const loadingLogin = (state: RootState) => selectAuth(state).loadings.login;
+const loadingUserData = (state: RootState) =>
+  selectAuth(state).loadings.userData;
 
 export const authSelectors = {
   userToken,
-  loading,
+  loadingLogin,
+  loadingUserData,
 };

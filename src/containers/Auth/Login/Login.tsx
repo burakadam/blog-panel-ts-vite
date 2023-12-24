@@ -10,7 +10,7 @@ type TFieldType = {
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const loading = useAppSelector(authSelectors.loading);
+  const loading = useAppSelector(authSelectors.loadingLogin);
 
   const onFinish = (values: ILogin) => {
     dispatch(authActions.loginRequest(values));
