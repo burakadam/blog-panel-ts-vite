@@ -22,7 +22,12 @@ const List = () => {
           Create New Category
         </Link>
       </div>
-      <Table dataSource={categoryList} columns={COLUMNS} pagination={false} />
+      <Table
+        dataSource={categoryList}
+        columns={COLUMNS}
+        pagination={false}
+        rowKey='_id'
+      />
     </Spin>
   );
 };
