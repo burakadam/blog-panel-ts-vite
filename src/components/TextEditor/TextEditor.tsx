@@ -21,7 +21,7 @@ import {
 import './styles.css';
 
 interface ITextEditor {
-  onChange?: (arg: string) => string;
+  onChange?: (arg: string) => void;
 }
 
 const TextEditor = ({ onChange }: ITextEditor) => (

@@ -9,8 +9,6 @@ const requestHandler = (request: InternalAxiosRequestConfig) => {
   const authState = store.getState().auth as IAuthInitialState;
   const zoneId = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  console.log('authState.token', authState.token);
-
   if (authState.token) {
     request.headers['x-access-token'] = authState.token;
     request.headers['X-Request-Id'] = uuidv4();
