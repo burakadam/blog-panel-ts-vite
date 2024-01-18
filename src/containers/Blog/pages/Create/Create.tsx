@@ -1,11 +1,13 @@
 import { TagsInput } from '@/components/Form';
 import { TextEditor } from '@/components/TextEditor';
+import { ROUTES } from '@/constants/routes';
 import { TBlogValues } from '@/models/blog';
 import { ICategory } from '@/models/category';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { InboxOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Select, Spin, Upload } from 'antd';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { blogCreateSelectors } from '.';
 import { blogCreateActions } from './slice';
 
@@ -14,18 +16,18 @@ const { Dragger } = Upload;
 
 const Create = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const categoryList = useAppSelector(blogCreateSelectors.categoryList);
   const isLoading = useAppSelector(blogCreateSelectors.isLoading);
+  const isSuccess = useAppSelector(blogCreateSelectors.isSuccess);
 
   const onFinish = async (values: TBlogValues) => {
-    console.log(values);
-
     const formData = new FormData();
     formData.append('poster', values.poster[0]);
     formData.append('title', values.title);
     formData.append('content', values.content);
-    formData.append('tags', values.tags.join(','));
+    if (values.tags) formData.append('tags', values.tags.join(','));
     formData.append('category', values.category);
 
     dispatch(blogCreateActions.postBlogRequest(formData));
@@ -34,6 +36,10 @@ const Create = () => {
   useEffect(() => {
     dispatch(blogCreateActions.getCategoriesRequest());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isSuccess) navigate(ROUTES.BLOG_LIST);
+  }, [isSuccess, navigate]);
 
   return (
     <Spin spinning={isLoading}>
@@ -55,9 +61,12 @@ const Create = () => {
           label='Poster'
           name='poster'
           valuePropName='fileList'
+          rules={[{ required: true, message: 'Please select a poster' }]}
           getValueFromEvent={(e) => {
             console.log(e);
-            return e && [e.fileList[0]];
+            return e && e.fileList.length > 0
+              ? [e.fileList[0].originFileObj]
+              : [];
           }}
         >
           <Dragger
@@ -77,7 +86,6 @@ const Create = () => {
           <TextEditor />
         </Form.Item>
         <Form.Item label='Tags' name='tags'>
-          {/* Use the TagsInput component for the 'tags' field */}
           <TagsInput form={form} name='tags' />
         </Form.Item>
         <Form.Item

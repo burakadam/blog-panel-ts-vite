@@ -21,7 +21,9 @@ function* getCategories() {
   }
 }
 
-function* createBlog({ payload }: PayloadAction<BlogModel.TBlogValues>) {
+function* createBlog({
+  payload,
+}: PayloadAction<BlogModel.TBlogValues | FormData>) {
   try {
     const createResult: { data: CategoryModel.TResponse } = yield call(
       createBlogItem,
