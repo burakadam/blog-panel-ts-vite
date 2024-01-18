@@ -20,4 +20,10 @@ export type TBlogList = Pick<
   '_id' | 'title' | 'viewCount' | 'createdAt' | 'category' | 'updatedAt'
 >;
 
+export type TBlogSearchParams = {
+  page: number;
+  pageSize: number;
+};
+
 export type TResponse = IBaseResponse<IBlog>;
+export type TListResponse = IBaseResponse<TBlogList>;

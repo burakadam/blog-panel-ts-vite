@@ -1,6 +1,6 @@
 import { REDUCERS } from '@/constants/reducers';
-import { TBlogList } from '@/models/blog';
-import { createSlice } from '@reduxjs/toolkit';
+import { TBlogList, TBlogSearchParams } from '@/models/blog';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface IBlogListInitialState {
   loading: boolean;
@@ -18,7 +18,8 @@ const blogListSlice = createSlice({
   name: REDUCERS.BLOG_LIST,
   initialState,
   reducers: {
-    getBlogsRequest(state) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getBlogsRequest(state, _action: PayloadAction<TBlogSearchParams>) {
       state.loading = true;
       state.error = null;
     },

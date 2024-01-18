@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/routes';
 import { ICategory } from '@/models/category';
-import { Link } from 'react-router-dom';
+import { Button } from 'antd';
 
 export const COLUMNS = [
   {
@@ -13,9 +13,9 @@ export const COLUMNS = [
   },
   {
     render: (item: ICategory) => (
-      <Link to={`${ROUTES.CATEGORY_UPDATE}/${item._id}`} key={item._id}>
+      <Button href={`${ROUTES.CATEGORY_UPDATE}/${item._id}`} key={item._id}>
         DETAIL
-      </Link>
+      </Button>
     ),
   },
 ];
