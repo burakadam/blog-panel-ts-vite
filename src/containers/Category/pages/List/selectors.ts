@@ -4,7 +4,6 @@ import { ICategoryListInitialState } from './slice';
 
 const selectCategoryList = (state: RootState): ICategoryListInitialState =>
   state[REDUCERS.CATEGORY_LIST];
-
 const categoryList = (state: RootState) => selectCategoryList(state).categories;
 const isLoading = (state: RootState) => selectCategoryList(state).loading;
 

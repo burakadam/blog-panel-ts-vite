@@ -6,6 +6,7 @@ export interface IBlog {
   content: string;
   author: string;
   createdAt: Date;
+  updatedAt: Date;
   tags: [string];
   category: string;
   viewCount: number;
@@ -13,5 +14,10 @@ export interface IBlog {
 }
 
 export type TBlogValues = Omit<IBlog, '_id' | 'viewCount'>;
+
+export type TBlogList = Pick<
+  IBlog,
+  '_id' | 'title' | 'viewCount' | 'createdAt' | 'category' | 'updatedAt'
+>;
 
 export type TResponse = IBaseResponse<IBlog>;

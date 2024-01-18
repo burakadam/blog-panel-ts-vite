@@ -1,6 +1,7 @@
 import { ProtectedLayout } from '@/components/Layouts/ProtectedLayout';
 import { ROUTES } from '@/constants/routes';
 import { Create as BlogCreate } from '@/containers/Blog/pages/Create';
+import { List as BlogList } from '@/containers/Blog/pages/List';
 import { Create as CategoryCreate } from '@/containers/Category/pages/Create';
 import { List as CategoryList } from '@/containers/Category/pages/List';
 import { Update as CategoryUpdate } from '@/containers/Category/pages/Update';
@@ -17,10 +18,17 @@ const ProtectedRoutes = () =>
           path: ROUTES.ROOT,
           element: <Home />,
         },
+        // BLOG
         {
           path: ROUTES.BLOG_CREATE,
           element: <BlogCreate />,
         },
+        {
+          path: ROUTES.BLOG_LIST,
+          element: <BlogList />,
+        },
+        // BLOG
+        // CATEGORY
         {
           path: ROUTES.CATEGORY_LIST,
           element: <CategoryList />,
@@ -33,6 +41,7 @@ const ProtectedRoutes = () =>
           path: `${ROUTES.CATEGORY_UPDATE}/:categoryId`,
           element: <CategoryUpdate />,
         },
+        // CATEGORY
       ],
     },
     { path: '*', element: <Navigate to={ROUTES.ROOT} replace /> },

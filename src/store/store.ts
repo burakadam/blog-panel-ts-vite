@@ -1,5 +1,6 @@
 import { REDUCERS } from '@/constants/reducers';
 import { blogCreateReducer } from '@/containers/Blog/pages/Create';
+import { blogListReducer } from '@/containers/Blog/pages/List';
 import { categoryCreateReducer } from '@/containers/Category/pages/Create';
 import { categoryListeReducer } from '@/containers/Category/pages/List';
 import { categoryUpdateReducer } from '@/containers/Category/pages/Update';
@@ -13,6 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
   [REDUCERS.AUTH]: authReducer,
   [REDUCERS.BLOG_CREATE]: blogCreateReducer,
+  [REDUCERS.BLOG_LIST]: blogListReducer,
   [REDUCERS.CATEGORY_LIST]: categoryListeReducer,
   [REDUCERS.CATEGORY_CREATE]: categoryCreateReducer,
   [REDUCERS.CATEGORY_UPDATE]: categoryUpdateReducer,
