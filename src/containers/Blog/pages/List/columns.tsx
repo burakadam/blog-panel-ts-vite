@@ -26,7 +26,7 @@ export const COLUMNS = [
   },
   {
     render: (e: TBlogList) => (
-      <Button href={`${ROUTES.CATEGORY_UPDATE}/${e._id}`}>Detail</Button>
+      <Button href={`${ROUTES.BLOG_UPDATE}/${e._id}`}>Detail</Button>
     ),
   },
 ];

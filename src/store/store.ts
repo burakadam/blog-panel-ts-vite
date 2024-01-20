@@ -1,6 +1,7 @@
 import { REDUCERS } from '@/constants/reducers';
 import { blogCreateReducer } from '@/containers/Blog/pages/Create';
 import { blogListReducer } from '@/containers/Blog/pages/List';
+import { blogUpdateReducer } from '@/containers/Blog/pages/Update';
 import { categoryCreateReducer } from '@/containers/Category/pages/Create';
 import { categoryListeReducer } from '@/containers/Category/pages/List';
 import { categoryUpdateReducer } from '@/containers/Category/pages/Update';
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   [REDUCERS.CATEGORY_LIST]: categoryListeReducer,
   [REDUCERS.CATEGORY_CREATE]: categoryCreateReducer,
   [REDUCERS.CATEGORY_UPDATE]: categoryUpdateReducer,
+  [REDUCERS.BLOG_UPDATE]: blogUpdateReducer,
 });
 
 export const store = configureStore({

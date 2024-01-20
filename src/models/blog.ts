@@ -20,6 +20,10 @@ export type TBlogList = Pick<
   '_id' | 'title' | 'viewCount' | 'createdAt' | 'category' | 'updatedAt'
 >;
 
+export type TBlogId = {
+  _id: string;
+};
+
 export type TBlogSearchParams = {
   page: number;
   pageSize: number;

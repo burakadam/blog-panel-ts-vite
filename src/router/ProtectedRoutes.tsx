@@ -2,6 +2,8 @@ import { ProtectedLayout } from '@/components/Layouts/ProtectedLayout';
 import { ROUTES } from '@/constants/routes';
 import { Create as BlogCreate } from '@/containers/Blog/pages/Create';
 import { List as BlogList } from '@/containers/Blog/pages/List';
+import { Update as BlogUpdate } from '@/containers/Blog/pages/Update';
+
 import { Create as CategoryCreate } from '@/containers/Category/pages/Create';
 import { List as CategoryList } from '@/containers/Category/pages/List';
 import { Update as CategoryUpdate } from '@/containers/Category/pages/Update';
@@ -26,6 +28,10 @@ const ProtectedRoutes = () =>
         {
           path: ROUTES.BLOG_LIST,
           element: <BlogList />,
+        },
+        {
+          path: `${ROUTES.BLOG_UPDATE}/:id`,
+          element: <BlogUpdate />,
         },
         // BLOG
         // CATEGORY
