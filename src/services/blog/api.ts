@@ -17,4 +17,9 @@ const getBlogDetail = async (_id: string) => {
   return blogResponse;
 };
 
-export { createBlog, getBlogDetail, getBlogList };
+const updateBlog = async (params: TBlogValues | FormData) => {
+  const blogResponse = await axiosInstance.post(API_ROUTES.update, params);
+  return blogResponse;
+};
+
+export { createBlog, getBlogDetail, getBlogList, updateBlog };

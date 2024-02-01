@@ -1,14 +1,15 @@
 import * as BlogModel from '@/models/blog';
 
-import { getBlogDetail as getBlogDetailItem } from '@/services/blog/api';
+import { blogServices } from '@/services/blog';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { notification } from 'antd';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { blogUpdateActions } from './slice';
 
 function* getBlogDetail({ payload }: PayloadAction<BlogModel.TBlogId>) {
   try {
     const blogResult: { data: BlogModel.TResponse } = yield call(
-      getBlogDetailItem,
+      blogServices.getBlogDetail,
       payload._id
     );
 
@@ -25,17 +26,17 @@ function* updateBlog({
 }: PayloadAction<BlogModel.TBlogValues | FormData>) {
   try {
     console.log('updateCategory', payload);
-    // const updateResult: { data: CategoryModel.TResponse } = yield call(
-    //   updateCategoryItem,
-    //   payload
-    // );
+    const updateResult: { data: BlogModel.TResponse } = yield call(
+      blogServices.updateBlog,
+      payload
+    );
 
-    // yield put(categoryUpdateActions.postCategorySuccess());
+    yield put(blogUpdateActions.postBlogUpdateSuccess());
 
-    // notification.success({
-    //   message: updateResult.data.statusCode,
-    //   description: updateResult.data.message,
-    // });
+    notification.success({
+      message: updateResult.data.statusCode,
+      description: updateResult.data.message,
+    });
   } catch (error) {
     yield put(blogUpdateActions.postBlogUpdateError(error));
   }

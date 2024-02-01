@@ -1,11 +1,12 @@
 import { TagsInput } from '@/components/Form';
 import { TextEditor } from '@/components/TextEditor';
+import { ROUTES } from '@/constants/routes';
 import { TBlogValues } from '@/models/blog';
 import { ICategory } from '@/models/category';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Button, Form, Input, Select, Spin } from 'antd';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { blogUpdateActions, blogUpdateSelectors } from '.';
 
 const { Option } = Select;
@@ -13,14 +14,18 @@ const { Option } = Select;
 // NEEDED TO FIND BETTER WAY TO HANDLE POSTER
 
 const Update = () => {
+  const navigate = useNavigate();
   const { blogId } = useParams();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const blogData = useAppSelector(blogUpdateSelectors.blog);
   const categories = useAppSelector(blogUpdateSelectors.categories);
   const isLoading = useAppSelector(blogUpdateSelectors.isLoading);
+  const isSuccess = useAppSelector(blogUpdateSelectors.isSuccess);
 
-  const [selectedImage, setSelectedImage] = useState<unknown>(null);
+  const [selectedImage, setSelectedImage] = useState<File | string | null>(
+    null
+  );
 
   useEffect(() => {
     dispatch(blogUpdateActions.getDetailRequest({ _id: blogId as string }));
@@ -32,12 +37,24 @@ const Update = () => {
   };
 
   const onFinish = async (values: TBlogValues) => {
-    console.log('values', selectedImage);
+    const formData = new FormData();
+    formData.append('id', blogId);
+    formData.append('poster', selectedImage);
+    formData.append('title', values.title);
+    formData.append('content', values.content);
+    if (values.tags) formData.append('tags', values.tags.join(','));
+    formData.append('category', values.category);
+
+    dispatch(blogUpdateActions.postBlogUpdateRequest(formData));
   };
 
   useEffect(() => {
-    if (blogData) setSelectedImage(blogData.poster);
+    if (blogData) setSelectedImage(blogData.poster as unknown as string);
   }, [blogData]);
+
+  useEffect(() => {
+    if (isSuccess) navigate(ROUTES.BLOG_LIST);
+  }, [isSuccess, navigate]);
 
   if (!blogData) return;
 
