@@ -62,18 +62,11 @@ const Create = () => {
           name='poster'
           valuePropName='fileList'
           rules={[{ required: true, message: 'Please select a poster' }]}
-          getValueFromEvent={(e) => {
-            console.log(e);
-            return e && e.fileList.length > 0
-              ? [e.fileList[0].originFileObj]
-              : [];
-          }}
+          getValueFromEvent={(e) =>
+            e && e.fileList.length > 0 ? [e.fileList[0].originFileObj] : []
+          }
         >
-          <Dragger
-            name='file'
-            multiple={false}
-            beforeUpload={() => false} // Prevent actual upload for now
-          >
+          <Dragger name='file' multiple={false} beforeUpload={() => false}>
             <p className='ant-upload-drag-icon'>
               <InboxOutlined />
             </p>
@@ -81,6 +74,7 @@ const Create = () => {
               Click or drag file to this area to upload
             </p>
           </Dragger>
+          <p>asd</p>
         </Form.Item>
         <Form.Item label='Content' name='content' rules={[{ required: true }]}>
           <TextEditor />

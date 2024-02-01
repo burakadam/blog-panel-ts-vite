@@ -36,8 +36,6 @@ function* getCategoryDetail({
       payload._id
     );
 
-    console.log(categoryResult);
-
     yield put(
       categoryUpdateActions.getDetailSuccess({
         name: categoryResult.data?.payload?.name,

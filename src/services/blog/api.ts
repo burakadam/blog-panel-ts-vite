@@ -12,4 +12,9 @@ const getBlogList = async (params: TBlogSearchParams) => {
   return blogResponse;
 };
 
-export { createBlog, getBlogList };
+const getBlogDetail = async (_id: string) => {
+  const blogResponse = await axiosInstance.post(API_ROUTES.detail, { _id });
+  return blogResponse;
+};
+
+export { createBlog, getBlogDetail, getBlogList };

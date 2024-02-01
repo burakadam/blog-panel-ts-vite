@@ -1,31 +1,26 @@
 import * as BlogModel from '@/models/blog';
 
+import { getBlogDetail as getBlogDetailItem } from '@/services/blog/api';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { blogUpdateActions } from './slice';
 
 function* getBlogDetail({ payload }: PayloadAction<BlogModel.TBlogId>) {
   try {
-    console.log('getBlogDetail', payload);
-    // const categoryResult: { data: CategoryModel.TResponse } = yield call(
-    //   getCategoryDetailItem,
-    //   payload._id
-    // );
+    const blogResult: { data: BlogModel.TResponse } = yield call(
+      getBlogDetailItem,
+      payload._id
+    );
 
-    // console.log(categoryResult);
+    console.log(blogResult);
 
-    // yield put(
-    //   categoryUpdateActions.getDetailSuccess({
-    //     name: categoryResult.data?.payload?.name,
-    //     description: categoryResult.data?.payload?.description,
-    //   })
-    // );
+    yield put(blogUpdateActions.getDetailSuccess(blogResult.data?.payload));
   } catch (error) {
     yield put(blogUpdateActions.getDetailError(error));
   }
 }
 
-function* updateCategory({
+function* updateBlog({
   payload,
 }: PayloadAction<BlogModel.TBlogValues | FormData>) {
   try {
@@ -47,6 +42,6 @@ function* updateCategory({
 }
 
 export default function* categoryUpdateWatcher() {
-  yield takeLatest(blogUpdateActions.postBlogUpdateRequest, updateCategory);
+  yield takeLatest(blogUpdateActions.postBlogUpdateRequest, updateBlog);
   yield takeLatest(blogUpdateActions.getDetailRequest, getBlogDetail);
 }

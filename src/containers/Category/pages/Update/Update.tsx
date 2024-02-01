@@ -20,7 +20,6 @@ const Update = () => {
   }, []);
 
   useEffect(() => {
-    console.log(categoryDetail);
     if (form.current) form.current?.setFieldsValue(categoryDetail);
   }, [categoryDetail]);
 

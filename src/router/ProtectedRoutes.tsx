@@ -30,7 +30,7 @@ const ProtectedRoutes = () =>
           element: <BlogList />,
         },
         {
-          path: `${ROUTES.BLOG_UPDATE}/:id`,
+          path: `${ROUTES.BLOG_UPDATE}/:blogId`,
           element: <BlogUpdate />,
         },
         // BLOG

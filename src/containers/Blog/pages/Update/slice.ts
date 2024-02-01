@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { REDUCERS } from '@/constants/reducers';
 import { TBlogId, TBlogValues } from '@/models/blog';
+import { ICategory } from '@/models/category';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface IBlogUpdateInitialState {
   blog: TBlogValues | null;
+  categories: ICategory[];
   loading: boolean;
   error: string | null;
   success: boolean;
@@ -12,6 +14,7 @@ export interface IBlogUpdateInitialState {
 
 const initialState: IBlogUpdateInitialState = {
   blog: null,
+  categories: [],
   error: null,
   loading: false,
   success: false,
@@ -28,7 +31,8 @@ const blogUpdateSlice = createSlice({
     getDetailSuccess(state, action) {
       state.loading = false;
       state.error = null;
-      state.blog = action.payload;
+      state.blog = action.payload.blog;
+      state.categories = action.payload.categories;
     },
     getDetailError(state, action) {
       state.loading = false;
