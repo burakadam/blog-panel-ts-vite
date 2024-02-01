@@ -42,7 +42,7 @@ const Create = () => {
   }, [isSuccess, navigate]);
 
   return (
-    <Spin spinning={isLoading}>
+    <Spin spinning={isLoading} fullscreen>
       <Form
         form={form}
         onFinish={onFinish}

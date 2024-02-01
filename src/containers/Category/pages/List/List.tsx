@@ -16,7 +16,7 @@ const List = () => {
   }, [dispatch]);
 
   return (
-    <Spin spinning={isLoading}>
+    <Spin spinning={isLoading} fullscreen>
       <div className='flex justify-end mb-4'>
         <Link to={ROUTES.CATEGORY_CREATE} className='text-blue-400'>
           Create New Category

@@ -59,7 +59,7 @@ const Update = () => {
   if (!blogData) return;
 
   return (
-    <Spin spinning={isLoading}>
+    <Spin spinning={isLoading} fullscreen>
       <Form
         form={form}
         onFinish={onFinish}

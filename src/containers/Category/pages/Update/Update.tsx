@@ -34,7 +34,7 @@ const Update = () => {
   };
 
   return (
-    <Spin spinning={isLoading}>
+    <Spin spinning={isLoading} fullscreen>
       <Form onFinish={onFinish} layout='vertical' ref={form} disabled={!!error}>
         <Form.Item
           label='Name'
