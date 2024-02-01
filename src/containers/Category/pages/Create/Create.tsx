@@ -26,7 +26,7 @@ const Create = () => {
   }, [isSuccess]);
 
   return (
-    <Spin spinning={isLoading} fullscreen>
+    <Spin spinning={isLoading}>
       <Form onFinish={onFinish} layout='vertical'>
         <Form.Item
           label='Name'

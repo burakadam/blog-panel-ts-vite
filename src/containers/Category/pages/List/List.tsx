@@ -15,8 +15,10 @@ const List = () => {
     dispatch(categoryListActions.getCategoriesRequest());
   }, [dispatch]);
 
+  if (isLoading) return <Spin spinning={isLoading} fullscreen />;
+
   return (
-    <Spin spinning={isLoading} fullscreen>
+    <>
       <div className='flex justify-end mb-4'>
         <Link to={ROUTES.CATEGORY_CREATE} className='text-blue-400'>
           Create New Category
@@ -28,7 +30,7 @@ const List = () => {
         pagination={false}
         rowKey='_id'
       />
-    </Spin>
+    </>
   );
 };
 
