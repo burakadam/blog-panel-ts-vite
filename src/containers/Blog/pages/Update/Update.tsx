@@ -38,8 +38,8 @@ const Update = () => {
 
   const onFinish = async (values: TBlogValues) => {
     const formData = new FormData();
-    formData.append('id', blogId);
-    formData.append('poster', selectedImage);
+    formData.append('id', blogId as string);
+    formData.append('poster', selectedImage as File);
     formData.append('title', values.title);
     formData.append('content', values.content);
     if (values.tags) formData.append('tags', values.tags.join(','));
