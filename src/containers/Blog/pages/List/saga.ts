@@ -10,7 +10,7 @@ function* getBlogs() {
   try {
     const page: number = yield select(blogListSelectors.activePage);
     const pageSize: number = yield select(blogListSelectors.pageSize);
-    const search = undefined;
+    const search: string | undefined = yield select(blogListSelectors.search);
 
     const blogList: { data: BlogModel.TListResponse } = yield call(
       getBlogList,
@@ -40,7 +40,11 @@ function* deleteBlog({ payload }: PayloadAction<BlogModel.TBlogId>) {
 
 export default function* blogListWatcher() {
   yield takeLatest(
-    [blogListActions.getBlogsRequest, blogListActions.setActivePage],
+    [
+      blogListActions.getBlogsRequest,
+      blogListActions.setActivePage,
+      blogListActions.setSearch,
+    ],
     getBlogs
   );
   yield takeLatest(blogListActions.deleteBlogRequest, deleteBlog);

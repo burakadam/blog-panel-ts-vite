@@ -5,6 +5,7 @@ import { Button, Modal, Spin, Table } from 'antd';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { blogListSelectors } from '.';
+import { BlogFilter } from './List.filter';
 import { COLUMNS } from './columns';
 import { blogListActions } from './slice';
 
@@ -44,6 +45,7 @@ const List = () => {
 
   return (
     <Spin spinning={isLoading}>
+      <BlogFilter />
       <div className='flex justify-end mb-4'>
         <Link to={ROUTES.BLOG_CREATE} className='text-blue-400'>
           Create New Blog
@@ -58,6 +60,7 @@ const List = () => {
           pageSize: pageSize,
           current: activePage,
           onChange: handlePageChange,
+          showTotal: (total) => `Total: ${total} `,
         }}
       />
       <Modal

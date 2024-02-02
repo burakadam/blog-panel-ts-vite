@@ -9,6 +9,7 @@ const isLoading = (state: RootState) => selectBlogList(state).loading;
 const totalCount = (state: RootState) => selectBlogList(state).totalCount;
 const activePage = (state: RootState) => selectBlogList(state).activePage;
 const pageSize = (state: RootState) => selectBlogList(state).pageSize;
+const search = (state: RootState) => selectBlogList(state).search;
 
 export const blogListSelectors = {
   blogList,
@@ -16,4 +17,5 @@ export const blogListSelectors = {
   totalCount,
   activePage,
   pageSize,
+  search,
 };

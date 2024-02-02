@@ -42,7 +42,7 @@ const Create = () => {
     return () => {
       dispatch(blogCreateActions.resetState());
     };
-  }, [isSuccess, navigate]);
+  }, [dispatch, isSuccess, navigate]);
 
   return (
     <Spin spinning={isLoading}>

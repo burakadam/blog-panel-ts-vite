@@ -10,6 +10,7 @@ export interface IBlogListInitialState {
   totalCount: number;
   activePage: number;
   pageSize: number;
+  search: string | undefined;
 }
 
 const initialState: IBlogListInitialState = {
@@ -19,6 +20,7 @@ const initialState: IBlogListInitialState = {
   totalCount: 0,
   activePage: 1,
   pageSize: 2,
+  search: undefined,
 };
 
 const blogListSlice = createSlice({
@@ -56,6 +58,11 @@ const blogListSlice = createSlice({
     setActivePage(state, action) {
       state.loading = true;
       state.activePage = action.payload;
+    },
+    setSearch(state, action) {
+      state.loading = true;
+      state.activePage = 1;
+      state.search = action.payload.search;
     },
   },
 });
