@@ -12,11 +12,18 @@ const List = () => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(blogListSelectors.isLoading);
   const blogs = useAppSelector(blogListSelectors.blogList);
+  const activePage = useAppSelector(blogListSelectors.activePage);
+  const pageSize = useAppSelector(blogListSelectors.pageSize);
+  const totalCount = useAppSelector(blogListSelectors.totalCount);
+
   const [selectedBlog, setSelectedBlog] = useState<TBlogList | null>(null);
 
   useEffect(() => {
-    dispatch(blogListActions.getBlogsRequest({ page: 1, pageSize: 10 }));
-  }, [dispatch]);
+    dispatch(blogListActions.getBlogsRequest());
+  }, [activePage, dispatch, pageSize]);
+
+  const handlePageChange = (num: number) =>
+    dispatch(blogListActions.setActivePage(num));
 
   const handleDelete = (item: TBlogList) => {
     setSelectedBlog(item);
@@ -39,14 +46,19 @@ const List = () => {
     <Spin spinning={isLoading}>
       <div className='flex justify-end mb-4'>
         <Link to={ROUTES.BLOG_CREATE} className='text-blue-400'>
-          Create New Category
+          Create New Blog
         </Link>
       </div>
       <Table
         dataSource={blogs}
         columns={columns}
-        pagination={false}
         rowKey='_id'
+        pagination={{
+          total: totalCount,
+          pageSize: pageSize,
+          current: activePage,
+          onChange: handlePageChange,
+        }}
       />
       <Modal
         title='Delete Blog'

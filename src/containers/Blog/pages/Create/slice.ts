@@ -49,6 +49,9 @@ const blogCreateSlice = createSlice({
       state.error = action.payload;
       state.success = false;
     },
+    resetState() {
+      return { ...initialState };
+    },
   },
 });
 

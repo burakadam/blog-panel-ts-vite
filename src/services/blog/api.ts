@@ -1,4 +1,4 @@
-import { TBlogId, TBlogSearchParams, TBlogValues } from '@/models/blog';
+import { TBlogSearchParams, TBlogValues } from '@/models/blog';
 import axiosInstance from '../axios';
 import API_ROUTES from './routes';
 
@@ -22,7 +22,7 @@ const updateBlog = async (params: TBlogValues | FormData) => {
   return blogResponse;
 };
 
-const deleteBlog = async (params: TBlogId) => {
+const deleteBlog = async (params: unknown) => {
   const blogResponse = await axiosInstance.post(API_ROUTES.delete, params);
   return blogResponse;
 };

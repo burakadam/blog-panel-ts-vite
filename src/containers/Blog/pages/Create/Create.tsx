@@ -39,6 +39,9 @@ const Create = () => {
 
   useEffect(() => {
     if (isSuccess) navigate(ROUTES.BLOG_LIST);
+    return () => {
+      dispatch(blogCreateActions.resetState());
+    };
   }, [isSuccess, navigate]);
 
   return (

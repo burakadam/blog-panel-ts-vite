@@ -27,6 +27,7 @@ export type TBlogId = {
 export type TBlogSearchParams = {
   page: number;
   pageSize: number;
+  search: string | undefined;
 };
 
 export type TResponse = IBaseResponse<IBlog>;

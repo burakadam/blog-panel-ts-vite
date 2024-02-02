@@ -1,36 +1,45 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { REDUCERS } from '@/constants/reducers';
-import { TBlogId, TBlogList, TBlogSearchParams } from '@/models/blog';
+import { TBlogId, TBlogList } from '@/models/blog';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface IBlogListInitialState {
   loading: boolean;
   error: string | null;
   blogs: TBlogList[];
+  totalCount: number;
+  activePage: number;
+  pageSize: number;
 }
 
 const initialState: IBlogListInitialState = {
   loading: false,
   error: null,
   blogs: [],
+  totalCount: 0,
+  activePage: 1,
+  pageSize: 2,
 };
 
 const blogListSlice = createSlice({
   name: REDUCERS.BLOG_LIST,
   initialState,
   reducers: {
-    getBlogsRequest(state, _action: PayloadAction<TBlogSearchParams>) {
+    getBlogsRequest(state) {
       state.loading = true;
       state.error = null;
+      state.totalCount = 0;
     },
     getBlogsSuccess(state, action) {
       state.loading = false;
-      state.blogs = action.payload;
+      state.blogs = action.payload.blogs;
+      state.totalCount = action.payload.totalCount;
     },
     getBlogsError(state, action) {
       state.loading = false;
       state.blogs = initialState.blogs;
       state.error = action.payload;
+      state.totalCount = 0;
     },
     deleteBlogRequest(state, _action: PayloadAction<TBlogId>) {
       state.loading = true;
@@ -43,6 +52,10 @@ const blogListSlice = createSlice({
     deleteBlogError(state, action) {
       state.loading = true;
       state.error = action.payload;
+    },
+    setActivePage(state, action) {
+      state.loading = true;
+      state.activePage = action.payload;
     },
   },
 });
