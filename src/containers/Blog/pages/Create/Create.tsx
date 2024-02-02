@@ -42,7 +42,7 @@ const Create = () => {
   }, [isSuccess, navigate]);
 
   return (
-    <Spin spinning={isLoading} fullscreen>
+    <Spin spinning={isLoading}>
       <Form
         form={form}
         onFinish={onFinish}
@@ -74,7 +74,6 @@ const Create = () => {
               Click or drag file to this area to upload
             </p>
           </Dragger>
-          <p>asd</p>
         </Form.Item>
         <Form.Item label='Content' name='content' rules={[{ required: true }]}>
           <TextEditor />

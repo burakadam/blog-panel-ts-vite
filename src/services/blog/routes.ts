@@ -3,4 +3,5 @@ export default {
   list: '/blog/list',
   detail: '/blog/detail',
   update: '/blog/update',
+  delete: '/blog/delete',
 };

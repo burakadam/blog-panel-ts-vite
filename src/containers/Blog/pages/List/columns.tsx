@@ -2,7 +2,7 @@ import { ROUTES } from '@/constants/routes';
 import { TBlogList } from '@/models/blog';
 import { Button } from 'antd';
 
-export const COLUMNS = [
+export const COLUMNS = (handleDelete: (item: TBlogList) => void) => [
   {
     dataIndex: 'title',
     title: 'Title',
@@ -27,6 +27,13 @@ export const COLUMNS = [
   {
     render: (e: TBlogList) => (
       <Button href={`${ROUTES.BLOG_UPDATE}/${e._id}`}>Detail</Button>
+    ),
+  },
+  {
+    render: (e: TBlogList) => (
+      <Button danger onClick={() => handleDelete(e)}>
+        Delete
+      </Button>
     ),
   },
 ];
