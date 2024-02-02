@@ -26,12 +26,16 @@ function* getBlogs() {
 
 function* deleteBlog({ payload }: PayloadAction<BlogModel.TBlogId>) {
   try {
+    const page: number = yield select(blogListSelectors.activePage);
+    const pageSize: number = yield select(blogListSelectors.pageSize);
+    const search: string | undefined = yield select(blogListSelectors.search);
+
     const deleted: { data: BlogModel.TListResponse } = yield call(
       blogServices.deleteBlog,
-      payload
+      { ...payload, page, pageSize, search }
     );
 
-    const blogs = deleted?.data?.payload || [];
+    const blogs = deleted?.data?.payload || {};
     yield put(blogListActions.deleteBlogSuccess(blogs));
   } catch (error) {
     yield put(blogListActions.deleteBlogError(error));

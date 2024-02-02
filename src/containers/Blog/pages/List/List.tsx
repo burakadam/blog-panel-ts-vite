@@ -21,6 +21,10 @@ const List = () => {
 
   useEffect(() => {
     dispatch(blogListActions.getBlogsRequest());
+
+    return () => {
+      dispatch(blogListActions.resetState());
+    };
   }, [activePage, dispatch, pageSize]);
 
   const handlePageChange = (num: number) =>

@@ -49,7 +49,8 @@ const blogListSlice = createSlice({
     },
     deleteBlogSuccess(state, action) {
       state.loading = false;
-      state.blogs = action.payload;
+      state.blogs = action.payload.blogs;
+      state.totalCount = action.payload.totalCount;
     },
     deleteBlogError(state, action) {
       state.loading = true;
@@ -63,6 +64,9 @@ const blogListSlice = createSlice({
       state.loading = true;
       state.activePage = 1;
       state.search = action.payload.search;
+    },
+    resetState() {
+      return { ...initialState };
     },
   },
 });
