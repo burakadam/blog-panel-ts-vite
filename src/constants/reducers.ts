@@ -7,4 +7,6 @@ export const REDUCERS = {
   CATEGORY_CREATE: 'categoryCreate',
   CATEGORY_UPDATE: 'categoryUpdate',
   ROLE_CREATE: 'roleCreate',
+  ROLE_LIST: 'roleList',
+  ROLE_UPDATE: 'roleUpdate',
 };

@@ -5,6 +5,7 @@ import categoryCreateWatcher from '@/containers/Category/pages/Create/saga';
 import categoryListWatcher from '@/containers/Category/pages/List/saga';
 import categoryUpdateWatcher from '@/containers/Category/pages/Update/saga';
 import roleCreateWatcher from '@/containers/Role/pages/Create/saga';
+import roleListWatcher from '@/containers/Role/pages/List/saga';
 
 import { all, fork } from 'redux-saga/effects';
 import authWatcher from './auth/saga';
@@ -19,6 +20,7 @@ const rootSaga = function* () {
     fork(categoryUpdateWatcher),
     fork(blogUpdateWatcher),
     fork(roleCreateWatcher),
+    fork(roleListWatcher),
   ]);
 };
 

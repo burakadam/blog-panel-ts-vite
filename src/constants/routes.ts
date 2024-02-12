@@ -9,4 +9,5 @@ export const ROUTES = {
   CATEGORY_UPDATE: '/category/update',
   ROLE_LIST: '/role/list',
   ROLE_CREATE: '/role/create',
+  ROLE_UPDATE: '/role/update',
 };

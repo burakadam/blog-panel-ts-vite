@@ -7,4 +7,9 @@ const createRole = async (params: TRoleValues) => {
   return roleResponse;
 };
 
-export { createRole };
+const getRoleList = async () => {
+  const roleResponese = await axiosInstance.get(API_ROUTES.list);
+  return roleResponese;
+};
+
+export { createRole, getRoleList };
