@@ -1,6 +1,7 @@
 import { ROUTES } from '@/constants/routes';
 import {
   ClusterOutlined,
+  FundProjectionScreenOutlined,
   HighlightOutlined,
   OrderedListOutlined,
   ReadOutlined,
@@ -44,6 +45,26 @@ const MENU_ITEMS: MenuProps['items'] = [
         key: ROUTES.CATEGORY_CREATE,
         label: 'Category Create',
         title: 'Category Create',
+        icon: <HighlightOutlined />,
+      },
+    ],
+  },
+  {
+    key: 'Role',
+    label: 'Role',
+    title: 'Role',
+    icon: <FundProjectionScreenOutlined />,
+    children: [
+      {
+        key: ROUTES.ROLE_LIST,
+        label: 'Role List',
+        title: 'Role List',
+        icon: <OrderedListOutlined />,
+      },
+      {
+        key: ROUTES.ROLE_CREATE,
+        label: 'Role Create',
+        title: 'Role Create',
         icon: <HighlightOutlined />,
       },
     ],

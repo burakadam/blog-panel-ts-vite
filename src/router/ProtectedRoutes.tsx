@@ -8,6 +8,9 @@ import { Create as CategoryCreate } from '@/containers/Category/pages/Create';
 import { List as CategoryList } from '@/containers/Category/pages/List';
 import { Update as CategoryUpdate } from '@/containers/Category/pages/Update';
 
+import { Create as RoleCreate } from '@/containers/Role/pages/Create';
+import { List as RoleList } from '@/containers/Role/pages/List';
+
 import { Home } from '@/containers/Home';
 import { Navigate, useRoutes } from 'react-router-dom';
 
@@ -48,6 +51,16 @@ const ProtectedRoutes = () =>
           element: <CategoryUpdate />,
         },
         // CATEGORY
+        //ROLE
+        {
+          path: ROUTES.ROLE_LIST,
+          element: <RoleList />,
+        },
+        {
+          path: ROUTES.ROLE_CREATE,
+          element: <RoleCreate />,
+        },
+        //ROLE
       ],
     },
     { path: '*', element: <Navigate to={ROUTES.ROOT} replace /> },

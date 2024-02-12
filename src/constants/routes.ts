@@ -7,4 +7,6 @@ export const ROUTES = {
   CATEGORY_CREATE: '/category/create',
   CATEGORY_LIST: '/category/list',
   CATEGORY_UPDATE: '/category/update',
+  ROLE_LIST: '/role/list',
+  ROLE_CREATE: '/role/create',
 };
