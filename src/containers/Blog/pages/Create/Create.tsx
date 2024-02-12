@@ -1,5 +1,6 @@
 import { TagsInput } from '@/components/Form';
 import { TextEditor } from '@/components/TextEditor';
+import { Title } from '@/components/Title';
 import { ROUTES } from '@/constants/routes';
 import { TBlogValues } from '@/models/blog';
 import { ICategory } from '@/models/category';
@@ -46,6 +47,7 @@ const Create = () => {
 
   return (
     <Spin spinning={isLoading}>
+      <Title text='Create Blog' />
       <Form
         form={form}
         onFinish={onFinish}

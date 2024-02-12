@@ -2,8 +2,8 @@ import axiosInstance from '../axios';
 import API_ROUTES from './routes';
 
 const getPermissionList = async (): Promise<unknown> => {
-  const categoryResponse = await axiosInstance.get(API_ROUTES.list);
-  return categoryResponse;
+  const permissionResponse = await axiosInstance.get(API_ROUTES.list);
+  return permissionResponse;
 };
 
 export { getPermissionList };

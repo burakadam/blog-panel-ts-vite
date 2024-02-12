@@ -1,3 +1,4 @@
+import { Title } from '@/components/Title';
 import { ROUTES } from '@/constants/routes';
 import { TCategoryValues } from '@/models/category';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -27,7 +28,12 @@ const Create = () => {
 
   return (
     <Spin spinning={isLoading}>
-      <Form onFinish={onFinish} layout='vertical'>
+      <Title text='Create Category' />
+      <Form
+        onFinish={onFinish}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 16 }}
+      >
         <Form.Item
           label='Name'
           name='name'
@@ -42,7 +48,7 @@ const Create = () => {
         >
           <Input.TextArea />
         </Form.Item>
-        <Form.Item>
+        <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
           <Button htmlType='submit'>Create Category</Button>
         </Form.Item>
       </Form>

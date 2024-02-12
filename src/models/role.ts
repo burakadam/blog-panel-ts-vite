@@ -6,4 +6,6 @@ export interface IRole {
   permissions: [{ name: string; id: string }];
 }
 
+export type TRoleValues = Pick<IRole, 'name' | 'permissions'>;
+
 export type TResponse = IBaseResponse<IRole>;

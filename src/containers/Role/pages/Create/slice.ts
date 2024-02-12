@@ -1,6 +1,7 @@
 import { REDUCERS } from '@/constants/reducers';
 import { IPermission } from '@/models/permission';
-import { createSlice } from '@reduxjs/toolkit';
+import { TRoleValues } from '@/models/role';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ICreateRoleInitialState {
   loading: boolean;
@@ -32,6 +33,24 @@ const roleCreateSlice = createSlice({
       state.loading = false;
       state.permissions = initialState.permissions;
       state.error = action.payload;
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    postRoleRequest(state, _action: PayloadAction<TRoleValues>) {
+      state.loading = true;
+      state.error = null;
+    },
+    postRoleSuccess(state) {
+      state.loading = false;
+      state.error = null;
+      state.success = true;
+    },
+    postRoleError(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+      state.success = false;
+    },
+    resetState() {
+      return { ...initialState };
     },
   },
 });
