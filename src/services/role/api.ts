@@ -1,4 +1,4 @@
-import { TRoleValues } from '@/models/role';
+import { IRole, TRoleValues } from '@/models/role';
 import axiosInstance from '../axios';
 import API_ROUTES from './routes';
 
@@ -17,4 +17,9 @@ const getRoleDetail = async (_id: string) => {
   return roleResponse;
 };
 
-export { createRole, getRoleDetail, getRoleList };
+const updateRole = async (params: IRole) => {
+  const roleResponse = await axiosInstance.post(API_ROUTES.update, params);
+  return roleResponse;
+};
+
+export { createRole, getRoleDetail, getRoleList, updateRole };

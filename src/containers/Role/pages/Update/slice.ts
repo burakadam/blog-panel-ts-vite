@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { REDUCERS } from '@/constants/reducers';
 import { IPermission } from '@/models/permission';
-import { TRoleId, TRoleValues } from '@/models/role';
+import { IRole, TRoleId, TRoleValues } from '@/models/role';
 
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
@@ -24,7 +25,6 @@ const roleUpdateSlice = createSlice({
   name: REDUCERS.ROLE_UPDATE,
   initialState,
   reducers: {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     getRoleDetailRequest(state, _action: PayloadAction<TRoleId>) {
       state.loading = true;
       state.error = null;
@@ -40,6 +40,23 @@ const roleUpdateSlice = createSlice({
       state.error = action.payload;
       state.role = null;
       state.permissions = [];
+    },
+    postBlogUpdateRequest(state, _action: PayloadAction<IRole>) {
+      state.loading = true;
+      state.error = null;
+    },
+    postBlogUpdateSuccess(state) {
+      state.loading = false;
+      state.error = null;
+      state.success = true;
+    },
+    postBlogUpdateError(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+      state.success = false;
+    },
+    resetState() {
+      return { ...initialState };
     },
   },
 });
