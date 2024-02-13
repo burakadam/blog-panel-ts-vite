@@ -10,4 +10,5 @@ export const REDUCERS = {
   ROLE_LIST: 'roleList',
   ROLE_UPDATE: 'roleUpdate',
   USER_CREATE: 'userCreate',
+  USER_LIST: 'userList',
 };

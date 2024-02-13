@@ -9,6 +9,7 @@ import { roleCreateReducer } from '@/containers/Role/pages/Create';
 import { roleListReducer } from '@/containers/Role/pages/List';
 import { roleUpdateReducer } from '@/containers/Role/pages/Update';
 import { userCreateReducer } from '@/containers/User/pages/Create';
+import { userListReducer } from '@/containers/User/pages/List';
 import createSagaMiddleware from '@redux-saga/core';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth';
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   [REDUCERS.ROLE_LIST]: roleListReducer,
   [REDUCERS.ROLE_UPDATE]: roleUpdateReducer,
   [REDUCERS.USER_CREATE]: userCreateReducer,
+  [REDUCERS.USER_LIST]: userListReducer,
 });
 
 export const store = configureStore({

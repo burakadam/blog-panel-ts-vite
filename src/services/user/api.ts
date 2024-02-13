@@ -7,4 +7,9 @@ const createUser = async (params: TUserValues) => {
   return userResponse;
 };
 
-export { createUser };
+const getUserList = async () => {
+  const userResponse = await axiosInstance.post(API_ROUTES.list);
+  return userResponse;
+};
+
+export { createUser, getUserList };

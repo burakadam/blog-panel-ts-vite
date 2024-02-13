@@ -12,4 +12,5 @@ export const ROUTES = {
   ROLE_UPDATE: '/role/update',
   USER_LIST: '/user/list',
   USER_CREATE: '/user/create',
+  USER_UPDAET: '/user/update',
 };
