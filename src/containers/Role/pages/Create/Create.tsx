@@ -16,7 +16,6 @@ const Create = () => {
   const isSuccess = useAppSelector(roleCreateSelectors.isSuccess);
 
   const onFinish = (values: TRoleValues) => {
-    console.log(values);
     dispatch(roleCreateActions.postRoleRequest(values));
   };
 

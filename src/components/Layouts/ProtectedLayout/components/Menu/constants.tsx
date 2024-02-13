@@ -5,6 +5,7 @@ import {
   HighlightOutlined,
   OrderedListOutlined,
   ReadOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 import { MenuProps } from 'antd';
 
@@ -65,6 +66,26 @@ const MENU_ITEMS: MenuProps['items'] = [
         key: ROUTES.ROLE_CREATE,
         label: 'Role Create',
         title: 'Role Create',
+        icon: <HighlightOutlined />,
+      },
+    ],
+  },
+  {
+    key: 'User',
+    label: 'User',
+    title: 'User',
+    icon: <UserOutlined />,
+    children: [
+      {
+        key: ROUTES.USER_LIST,
+        label: 'User List',
+        title: 'User List',
+        icon: <OrderedListOutlined />,
+      },
+      {
+        key: ROUTES.USER_CREATE,
+        label: 'User Create',
+        title: 'User Create',
         icon: <HighlightOutlined />,
       },
     ],

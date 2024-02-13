@@ -10,4 +10,6 @@ export const ROUTES = {
   ROLE_LIST: '/role/list',
   ROLE_CREATE: '/role/create',
   ROLE_UPDATE: '/role/update',
+  USER_LIST: '/user/list',
+  USER_CREATE: '/user/create',
 };

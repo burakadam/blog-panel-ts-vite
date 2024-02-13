@@ -12,6 +12,9 @@ import { Create as RoleCreate } from '@/containers/Role/pages/Create';
 import { List as RoleList } from '@/containers/Role/pages/List';
 import { Update as RoleUpdate } from '@/containers/Role/pages/Update';
 
+import { Create as UserCreate } from '@/containers/User/pages/Create';
+import { List as UserList } from '@/containers/User/pages/List';
+
 import { Home } from '@/containers/Home';
 import { Navigate, useRoutes } from 'react-router-dom';
 
@@ -66,6 +69,16 @@ const ProtectedRoutes = () =>
           element: <RoleUpdate />,
         },
         //ROLE
+        //USER
+        {
+          path: ROUTES.USER_LIST,
+          element: <UserList />,
+        },
+        {
+          path: ROUTES.USER_CREATE,
+          element: <UserCreate />,
+        },
+        //USER
       ],
     },
     { path: '*', element: <Navigate to={ROUTES.ROOT} replace /> },

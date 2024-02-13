@@ -6,14 +6,13 @@ import { roleListActions } from './slice';
 
 function* getRoles() {
   try {
-    console.log('a');
     const listResult: { data: RoleModel.TResponse } = yield call(
       roleService.getRoleList
     );
 
-    console.log('listResult', listResult);
-
     const roles = listResult?.data?.payload || [];
+
+    console.log('listResult', listResult);
 
     yield put(roleListActions.getRolesSuccess(roles));
   } catch (error) {
