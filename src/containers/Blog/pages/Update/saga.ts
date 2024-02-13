@@ -13,8 +13,6 @@ function* getBlogDetail({ payload }: PayloadAction<BlogModel.TBlogId>) {
       payload._id
     );
 
-    console.log(blogResult);
-
     yield put(blogUpdateActions.getDetailSuccess(blogResult.data?.payload));
   } catch (error) {
     yield put(blogUpdateActions.getDetailError(error));

@@ -11,8 +11,6 @@ const List = () => {
   const roleList = useAppSelector(roleListSelectors.roleList);
   const isLoading = useAppSelector(roleListSelectors.isLoading);
 
-  console.log(roleList);
-
   useEffect(() => {
     dispatch(roleListActions.getRolesRequest());
   }, [dispatch]);

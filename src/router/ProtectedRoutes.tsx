@@ -10,6 +10,7 @@ import { Update as CategoryUpdate } from '@/containers/Category/pages/Update';
 
 import { Create as RoleCreate } from '@/containers/Role/pages/Create';
 import { List as RoleList } from '@/containers/Role/pages/List';
+import { Update as RoleUpdate } from '@/containers/Role/pages/Update';
 
 import { Home } from '@/containers/Home';
 import { Navigate, useRoutes } from 'react-router-dom';
@@ -59,6 +60,10 @@ const ProtectedRoutes = () =>
         {
           path: ROUTES.ROLE_CREATE,
           element: <RoleCreate />,
+        },
+        {
+          path: `${ROUTES.ROLE_UPDATE}/:roleId`,
+          element: <RoleUpdate />,
         },
         //ROLE
       ],

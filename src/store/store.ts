@@ -7,6 +7,7 @@ import { categoryListeReducer } from '@/containers/Category/pages/List';
 import { categoryUpdateReducer } from '@/containers/Category/pages/Update';
 import { roleCreateReducer } from '@/containers/Role/pages/Create';
 import { roleListReducer } from '@/containers/Role/pages/List';
+import { roleUpdateReducer } from '@/containers/Role/pages/Update';
 import createSagaMiddleware from '@redux-saga/core';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   [REDUCERS.BLOG_UPDATE]: blogUpdateReducer,
   [REDUCERS.ROLE_CREATE]: roleCreateReducer,
   [REDUCERS.ROLE_LIST]: roleListReducer,
+  [REDUCERS.ROLE_UPDATE]: roleUpdateReducer,
 });
 
 export const store = configureStore({
