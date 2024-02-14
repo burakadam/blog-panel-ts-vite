@@ -14,6 +14,11 @@ const List = () => {
   const userList = useAppSelector(userListSelectors.userList);
   const isLoading = useAppSelector(userListSelectors.isLoading);
 
+  const handleToogleActivation = (id: string, isActive: boolean) => {
+    console.log(id, isActive);
+    dispatch(userListActions.toggleUserActiveStatusRequest({ id, isActive }));
+  };
+
   useEffect(() => {
     dispatch(userListActions.getUsersRequest());
   }, [dispatch]);
@@ -27,7 +32,7 @@ const List = () => {
       </div>
       <Table
         dataSource={userList}
-        columns={COLUMNS}
+        columns={COLUMNS(handleToogleActivation)}
         pagination={false}
         rowKey='_id'
       />

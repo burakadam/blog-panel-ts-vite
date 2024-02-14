@@ -1,8 +1,9 @@
-import { ROUTES } from '@/constants/routes';
-import { ICategory } from '@/models/category';
+import { IUser } from '@/models/user';
 import { Button } from 'antd';
 
-export const COLUMNS = [
+export const COLUMNS = (
+  handleToogleActivation: (a: string, b: boolean) => void
+) => [
   {
     dataIndex: 'fullName',
     title: 'Full Name',
@@ -16,10 +17,17 @@ export const COLUMNS = [
     title: 'Create At',
   },
   {
-    render: (item: ICategory) => (
-      <Button href={`${ROUTES.USER_UPDAET}/${item._id}`} key={item._id}>
-        DETAIL
+    render: (item: IUser) => (
+      <Button onClick={() => handleToogleActivation(item._id, !item.isActive)}>
+        {item.isActive ? 'DEACTIVATE' : 'ACTIVATE'}
       </Button>
     ),
   },
+  // {
+  //   render: (item: IUser) => (
+  //     <Button href={`${ROUTES.USER_UPDAET}/${item._id}`} key={item._id}>
+  //       DETAIL
+  //     </Button>
+  //   ),
+  // },
 ];

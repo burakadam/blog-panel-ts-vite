@@ -1,6 +1,6 @@
 import { REDUCERS } from '@/constants/reducers';
-import { IUser } from '@/models/user';
-import { createSlice } from '@reduxjs/toolkit';
+import { IToggleValues, IUser } from '@/models/user';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface IUsersListInitialState {
   loading: boolean;
@@ -29,6 +29,23 @@ const userListSlice = createSlice({
     getUsersError(state, action) {
       state.loading = false;
       state.users = initialState.users;
+      state.error = action.payload;
+    },
+
+    toggleUserActiveStatusRequest(
+      state,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      _action: PayloadAction<IToggleValues>
+    ) {
+      state.loading = true;
+      state.error = null;
+    },
+    toggleUserActiveStatusSuccess(state, action) {
+      state.loading = false;
+      state.users = action.payload;
+    },
+    toggleUserActiveStatusError(state, action) {
+      state.loading = false;
       state.error = action.payload;
     },
   },
