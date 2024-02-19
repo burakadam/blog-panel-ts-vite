@@ -1,61 +1,88 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { LOCAL_STORAGE } from '@/constants/localStorage';
 import { REDUCERS } from '@/constants/reducers';
-import { ILogin } from '@/services/auth/api';
+import { ILogin, IUser, TUserProfileValues } from '@/models/user';
 
 export interface IAuthInitialState {
   token: string | null;
-  userEmail: string | null;
   loadings: {
     login: boolean;
     userData: boolean;
+    profile: boolean;
   };
-  error: string | null;
+  errors: {
+    login: string | null;
+    userData: string | null;
+    profile: string | null;
+  };
+  user: IUser | object;
 }
 
 const initialState: IAuthInitialState = {
   token: localStorage.getItem(LOCAL_STORAGE.USER_TOKEN),
-  userEmail: null,
   loadings: {
     login: false,
     userData: true,
+    profile: false,
   },
-  error: null,
+  errors: {
+    login: null,
+    userData: null,
+    profile: null,
+  },
+  user: {},
 };
 
 const authSlice = createSlice({
   name: REDUCERS.AUTH,
   initialState,
   reducers: {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     loginRequest(state, _action: PayloadAction<ILogin>) {
       state.loadings.login = true;
-      state.error = initialState.error;
+      state.errors.login = null;
     },
     loginSuccess(state, action) {
       state.token = action.payload.token;
-      state.loadings.login = initialState.loadings.login;
-      state.error = initialState.error;
-      state.userEmail = action.payload.email;
+      state.loadings.login = false;
+      state.errors.login = null;
+      state.user = action.payload;
     },
-    loginError(_, action) {
-      return { ...initialState, token: null, error: action.payload.error };
+    loginError(state, action) {
+      state.errors.login = action.payload;
+      state.loadings.login = false;
     },
     logout() {
       return { ...initialState, token: null };
     },
     getUserDataRequest(state) {
       state.loadings.userData = true;
-      state.error = initialState.error;
+      state.errors.userData = null;
     },
     getUserDataSuccess(state, action) {
       state.loadings.userData = false;
-      state.error = initialState.error;
-      state.userEmail = action.payload.email;
+      state.errors.userData = null;
+      state.user = action.payload;
     },
-    getUserDataError(_, action) {
-      return { ...initialState, token: null, error: action.payload.error };
+    getUserDataError(state, action) {
+      state.loadings.userData = false;
+      state.errors.userData = action.payload;
+    },
+    updateUserProfileRequest(
+      state,
+      _action: PayloadAction<TUserProfileValues | FormData>
+    ) {
+      state.loadings.profile = true;
+    },
+    updateUserProfileSuccess(state, action) {
+      state.loadings.profile = false;
+      state.errors.profile = null;
+      state.user = action.payload;
+    },
+    updateUserProfileError(state, action) {
+      state.loadings.profile = false;
+      state.errors.profile = action.payload;
     },
   },
 });

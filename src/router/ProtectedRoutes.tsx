@@ -16,6 +16,7 @@ import { Create as UserCreate } from '@/containers/User/pages/Create';
 import { List as UserList } from '@/containers/User/pages/List';
 
 import { Home } from '@/containers/Home';
+import { Profile } from '@/containers/Profile';
 import { Navigate, useRoutes } from 'react-router-dom';
 
 const ProtectedRoutes = () =>
@@ -79,6 +80,10 @@ const ProtectedRoutes = () =>
           element: <UserCreate />,
         },
         //USER
+        {
+          path: ROUTES.PROFILE,
+          element: <Profile />,
+        },
       ],
     },
     { path: '*', element: <Navigate to={ROUTES.ROOT} replace /> },

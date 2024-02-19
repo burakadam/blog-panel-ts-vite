@@ -1,3 +1,4 @@
+import { Title } from '@/components/Title';
 import { ROUTES } from '@/constants/routes';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Spin, Table } from 'antd';
@@ -19,11 +20,11 @@ const List = () => {
 
   return (
     <>
-      <div className='flex justify-end mb-4'>
+      <Title text='Category List'>
         <Link to={ROUTES.CATEGORY_CREATE} className='text-blue-400'>
           Create New Category
         </Link>
-      </div>
+      </Title>
       <Table
         dataSource={categoryList}
         columns={COLUMNS}

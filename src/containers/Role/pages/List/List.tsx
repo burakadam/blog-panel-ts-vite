@@ -1,3 +1,4 @@
+import { Title } from '@/components/Title';
 import { ROUTES } from '@/constants/routes';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Spin, Table } from 'antd';
@@ -17,11 +18,11 @@ const List = () => {
 
   return (
     <Spin spinning={isLoading}>
-      <div className='flex justify-end mb-4'>
+      <Title text='Role List'>
         <Link to={ROUTES.ROLE_CREATE} className='text-blue-400'>
           Create New Role
         </Link>
-      </div>
+      </Title>
       <Table
         dataSource={roleList}
         columns={COLUMNS}

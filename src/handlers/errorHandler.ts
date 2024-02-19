@@ -12,8 +12,6 @@ const errorHandler = (response: {
     },
   } = response;
 
-  console.log('response', response);
-
   if (statusCode === 401) store.dispatch(authActions.logout());
 
   notification.error({

@@ -1,3 +1,4 @@
+import { Title } from '@/components/Title';
 import { ROUTES } from '@/constants/routes';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Spin, Table } from 'antd';
@@ -25,11 +26,11 @@ const List = () => {
 
   return (
     <Spin spinning={isLoading}>
-      <div className='flex justify-end mb-4'>
+      <Title text='User List'>
         <Link to={ROUTES.USER_CREATE} className='text-blue-400'>
           Create New User
         </Link>
-      </div>
+      </Title>
       <Table
         dataSource={userList}
         columns={COLUMNS(handleToogleActivation)}

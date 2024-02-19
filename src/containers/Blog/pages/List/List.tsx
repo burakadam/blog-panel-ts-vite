@@ -1,3 +1,4 @@
+import { Title } from '@/components/Title';
 import { ROUTES } from '@/constants/routes';
 import { TBlogList } from '@/models/blog';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -50,11 +51,12 @@ const List = () => {
   return (
     <Spin spinning={isLoading}>
       <BlogFilter />
-      <div className='flex justify-end mb-4'>
+      <br />
+      <Title text='Category List'>
         <Link to={ROUTES.BLOG_CREATE} className='text-blue-400'>
           Create New Blog
         </Link>
-      </div>
+      </Title>
       <Table
         dataSource={blogs}
         columns={columns}

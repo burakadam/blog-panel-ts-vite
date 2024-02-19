@@ -1,10 +1,6 @@
+import { ILogin } from '@/models/user';
 import axiosInstance from '../axios';
 import API_ROUTES from './routes';
-
-export interface ILogin {
-  email: string;
-  password: string;
-}
 
 const login = async (params: ILogin): Promise<unknown> => {
   const loginResponse = await axiosInstance.post(API_ROUTES.login, params);
@@ -17,4 +13,10 @@ const getUserData = async (): Promise<unknown> => {
   return userDataResponse;
 };
 
-export { getUserData, login };
+const updateUser = async (params: FormData) => {
+  console.log('updateUser', params);
+  const userResponse = await axiosInstance.post(API_ROUTES.update, params);
+  return userResponse;
+};
+
+export { getUserData, login, updateUser };

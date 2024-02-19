@@ -13,4 +13,5 @@ export const ROUTES = {
   USER_LIST: '/user/list',
   USER_CREATE: '/user/create',
   USER_UPDAET: '/user/update',
+  PROFILE: '/profile',
 };

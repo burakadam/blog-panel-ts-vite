@@ -6,6 +6,7 @@ import {
   OrderedListOutlined,
   ReadOutlined,
   UserOutlined,
+  UsergroupAddOutlined,
 } from '@ant-design/icons';
 import { MenuProps } from 'antd';
 
@@ -74,7 +75,7 @@ const MENU_ITEMS: MenuProps['items'] = [
     key: 'User',
     label: 'User',
     title: 'User',
-    icon: <UserOutlined />,
+    icon: <UsergroupAddOutlined />,
     children: [
       {
         key: ROUTES.USER_LIST,
@@ -89,6 +90,12 @@ const MENU_ITEMS: MenuProps['items'] = [
         icon: <HighlightOutlined />,
       },
     ],
+  },
+  {
+    key: 'Profile',
+    label: 'Burak Şahin Erden',
+    title: 'Profile',
+    icon: <UserOutlined />,
   },
 ];
 
